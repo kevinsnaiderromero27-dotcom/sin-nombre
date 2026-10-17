@@ -3,40 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acceso a la Red Digital</title>
+    <title>Portal Cautivo - Bienvenido</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="portal-container">
+    <div class="container">
         <div class="card">
-            <h2>Conéctate al Internet</h2>
-            <p>Introduce la clave temporal para activar tu acceso a Internet.</p>
+            <h2>Bienvenido a la Red</h2>
+            <p>Por favor, ingresa tus datos o presiona el botón para obtener acceso a Internet.</p>
             
-            <form id="access-form">
-                <div class="input-group">
-                    <input type="password" id="access-key" placeholder="Ingresa tu clave" required>
+            <form action="/login" method="POST">
+                <div class="form-group">
+                    <label for="username">Nombre de usuario / Correo:</label>
+                    <input type="text" id="username" name="username" placeholder="Tu usuario o correo" required>
                 </div>
-                <button type="submit" id="btn-connect">Conectarse</button>
+                
+                <button type="submit" class="btn">Conectar a Internet</button>
             </form>
-
-            <div id="status-message" class="hidden"></div>
         </div>
     </div>
-
-    <script>
-        document.getElementById('access-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const key = document.getElementById('access-key').value;
-            const messageBox = document.getElementById('status-message');
-
-            if(key === "1234") {
-                messageBox.textContent = "¡Acceso concedido! Conectando a la red...";
-                messageBox.className = "success";
-            } else {
-                messageBox.textContent = "Clave incorrecta. Inténtalo de nuevo.";
-                messageBox.className = "error";
-            }
-        });
-    </script>
 </body>
 </html>

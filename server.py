@@ -10,10 +10,10 @@ PORT = 8080
 class CaptivePortalHandler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
         parsed_path = urllib.parse.urlparse(self.path)
-
+        
         if parsed_path.path in ['/', '/index.html', '/styles.css'] or parsed_path.path.endswith(('.css', '.js', '.png', '.jpg')):
             return super().do_GET()
-
+        
         self.send_response(302)
         self.send_header('Location', f'http://localhost:{PORT}/index.html')
         self.end_headers()
@@ -26,7 +26,7 @@ class CaptivePortalHandler(http.server.SimpleHTTPRequestHandler):
 
             user_ip = self.client_address[0]
             timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-
+            
             log_entry = {
                 "timestamp": timestamp,
                 "ip": user_ip,
